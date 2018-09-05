@@ -25,6 +25,9 @@
 
 <div id="reportContainer"></div>
 
+<button onclick="getFilters()">Get Filters</button>
+<button onclick="setFilters()">Set Filters</button>
+
 <div class="infoBox">
     <div class="inputLine">
         <div class="inputLineTitle">Access Token</div>
@@ -41,6 +44,61 @@
 </div>
 
 <script>
+
+    function getFilters() {
+
+        // Get a reference to the embedded report HTML element
+        var embedContainer = $('#reportContainer')[0];
+
+        // Get a reference to the embedded report.
+        report = powerbi.get(embedContainer);
+
+        // Get the filters applied to the report.
+        report.getFilters()
+            .then(function (filters) {
+                console.log(filters);
+            })
+            .catch(function (errors) {
+                console.log(errors);
+            });
+    }
+
+    function setFilters() {
+    // Build the filter you want to use. For more information, See Constructing
+    // Filters in https://github.com/Microsoft/PowerBI-JavaScript/wiki/Filters.
+    var filter = {
+        $schema: 'http://powerbi.com/product/schema#advanced',
+        target: {
+            table: 'DimDate',
+            column: 'Date'
+        },
+        logicalOperator: 'And',
+        conditions: [
+            {
+                operator: 'GreaterThanOrEqual',
+                value: '2018-08-01'
+            }
+        ]
+    };
+
+// Get a reference to the embedded report HTML element
+        var embedContainer = $('#reportContainer')[0];
+
+// Get a reference to the embedded report.
+    report = powerbi.get(embedContainer);
+
+// Set the filter for the report.
+// Pay attention that setFilters receives an array.
+    report.setFilters([filter])
+        .then(function () {
+            console.logText("Report filter was set.");
+        })
+        .catch(function (errors) {
+            console.log(errors);
+        });
+
+        }
+
     // Read embed application token from Model
     var accessToken = "@Model.EmbedToken.Token";
 
@@ -65,7 +123,7 @@
         id: embedReportId,
         permissions: models.Permissions.All,
         settings: {
-            filterPaneEnabled: true,
+            filterPaneEnabled: false,
             navContentPaneEnabled: true
         }
     };
