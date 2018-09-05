@@ -76,7 +76,11 @@
         conditions: [
             {
                 operator: 'GreaterThanOrEqual',
-                value: '2018-08-01'
+                value: '2018-08-05T22:00:00.000Z'
+            },
+            {
+                operator: 'LessThan',
+                value: '2018-09-05T21:59:59.999Z'
             }
         ]
     };
@@ -91,7 +95,7 @@
 // Pay attention that setFilters receives an array.
     report.setFilters([filter])
         .then(function () {
-            console.logText("Report filter was set.");
+            console.log("Report filter was set.");
         })
         .catch(function (errors) {
             console.log(errors);
