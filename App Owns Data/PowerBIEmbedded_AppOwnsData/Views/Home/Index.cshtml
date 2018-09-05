@@ -25,6 +25,21 @@
 
 <div id="reportContainer"></div>
 
+<div class="infoBox">
+    <div class="inputLine">
+        <div class="inputLineTitle">Access Token</div>
+        <input type="text" value="@Model.EmbedToken.Token">
+    </div>
+    <div class="inputLine">
+        <div class="inputLineTitle">Embed URL</div>
+        <input type="text" value="@Model.EmbedUrl">
+    </div>
+    <div class="inputLine">
+        <div class="inputLineTitle">Report Id</div>
+        <input type="text" value="@Html.Raw(Model.Id)">
+    </div>
+</div>
+
 <script>
     // Read embed application token from Model
     var accessToken = "@Model.EmbedToken.Token";

@@ -53,3 +53,13 @@ a:hover, a:visited, a:link, a:active {
 .infoBox {
     margin-top: 30px;
 }
+
+.inputLineTitle {
+    width: 180px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.inputLine {
+    margin: 2px 0px;
+}
